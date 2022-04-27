@@ -1,0 +1,14 @@
+.section-dashboard {
+    margin-top: 50px;
+    overflow-y: auto;
+    ion-header {
+        position: fixed;
+        top: 0;
+    }
+    .foster-dashboard {
+        mat-card {
+            min-height: 500px;
+            z-index: 999;
+        }
+    }
+}

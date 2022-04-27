@@ -1,0 +1,105 @@
+<div class="session-content">
+  <div class="session-wrapper">
+    <form [formGroup]="signUpForm" (ngSubmit)="signUpUser()">
+      <div class="text-xs-center pb-1">
+        <img src="assets/images/logo-dark.svg" alt="" />
+        <p class="text-signin">Register</p>
+        <!-- <div fxLayout="column">
+          <p class="text-register" fxLayout="row" fxFlex="100%" fxLayoutAlign="center">Already have an
+            account?&nbsp;<span fxLayout="row" [routerLink]="'/session/signin'">Sign In</span></p>
+        </div> -->
+      </div>
+      <div fxLayout="column" fxLayoutGap="30px">
+        <!-- <div>
+          <mat-form-field style="width: 100%">
+            <mat-label>Choose one</mat-label>
+            <mat-select [formControl]="signUpForm.controls['Lead_Type']">
+              <mat-option value="Already Parent">I am currently a licensed foster parent</mat-option>
+              <mat-option value="Becoming Parent">I am interested in becoming a licensed foster parent</mat-option>
+              <mat-option value="Agency Member">I am from an Agency or Organization</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+        <!-- <div>
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="First Name" type="text" [formControl]="signUpForm.controls['FirstName']">
+          </mat-form-field>
+          <small
+            *ngIf="signUpForm.controls['FirstName'].hasError('required') && signUpForm.controls['FirstName'].touched"
+            class="mat-text-warn">You
+            must include first name.</small>
+        </div>
+        <div>
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Last Name" type="text" [formControl]="signUpForm.controls['LastName']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['LastName'].hasError('required') && signUpForm.controls['LastName'].touched"
+            class="mat-text-warn">You
+            must include first name.</small>
+        </div> -->
+        <!-- <div>
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Phone" type="text" [formControl]="signUpForm.controls['Phone']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['Phone'].hasError('required') && signUpForm.controls['Phone'].touched"
+            class="mat-text-warn">You must include phone.</small>
+          <small *ngIf="(signUpForm.controls['Phone'].hasError('minlength') || 
+                          signUpForm.controls['Phone'].hasError('maxlength') ||
+                          signUpForm.controls['Phone'].hasError('pattern')) && signUpForm.controls['Phone'].touched"
+            class="mat-text-warn">Invalid Phone.</small>
+        </div> -->
+        <div>
+          <mat-form-field style="width: 100%" appearance="outline">
+            <mat-label>Email address</mat-label>
+            <input matInput type="email" [formControl]="signUpForm.controls['Email']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['Email'].hasError('required') && signUpForm.controls['Email'].touched"
+            class="mat-text-warn">You
+            must include an email address.</small>
+          <small *ngIf="signUpForm.controls['Email'].errors?.email && signUpForm.controls['Email'].touched"
+            class="mat-text-warn">You
+            must include a valid email address.</small>
+        </div>
+        <div>
+          <mat-form-field style="width: 100%" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" [formControl]="signUpForm.controls['password__c']">
+          </mat-form-field>
+          <small
+            *ngIf="signUpForm.controls['password__c'].hasError('required') && signUpForm.controls['password__c'].touched"
+            class="mat-text-warn">You must include password.</small>
+        </div>
+        <div>
+          <mat-form-field style="width: 100%" appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [formControl]="signUpForm.controls['confirmPassword']" type="password">
+          </mat-form-field>
+          <small
+            *ngIf="signUpForm.controls['confirmPassword'].hasError('required') && signUpForm.controls['confirmPassword'].touched"
+            class="mat-text-warn">You must include confirm password.</small>
+          <small *ngIf="signUpForm.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Passwords do
+            not
+            match.</small>
+        </div>
+        <div fxLayout="column">
+          <password-strength-meter [password]="signUpForm.value.password__c"></password-strength-meter>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-checkbox color="accent"></mat-checkbox>
+          <a target="_blank" [routerLink]="['/session/legal']">
+            &nbsp;&nbsp;&nbsp;&nbsp;I have read and agree to the terms of service.
+          </a>
+        </div>
+        <div fxLayout="column">
+          <button mat-raised-button color="accent" class="btn-block" type="submit" [disabled]="!signUpForm.valid">Create
+            your account</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center">
+          Already have an
+          account?&nbsp;
+          <a [routerLink]="['/session/signin']">Login</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

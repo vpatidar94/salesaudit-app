@@ -1,0 +1,75 @@
+<div fxLayout="column" fxLayoutAlign="space-between" class="section-profile">
+  <form fxLayout="column" class="pa-1" [formGroup]="childForm" (ngSubmit)="saveChild()">
+    <section>
+      <div class="pb-1 text-lg font-weight-bold">
+        Add Child
+      </div>
+
+      <div class="pb-1" fxLayoutAlign="space-between start">
+        <div fxFlex="24%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="First Name" type="text" [formControl]="childForm.controls['nameF']">
+          </mat-form-field>
+          <small *ngIf="childForm.controls['nameF'].hasError('required') && childForm.controls['nameF'].touched"
+            class="mat-text-warn">You
+            must include first name.</small>
+        </div>
+        <div fxFlex="24%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Last Name" type="text" [formControl]="childForm.controls['nameL']">
+          </mat-form-field>
+          <small *ngIf="childForm.controls['nameL'].hasError('required') && childForm.controls['nameL'].touched"
+            class="mat-text-warn">You
+            must include last name.</small>
+        </div>
+
+        <div fxFlex="24%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input [max]="now" readonly (click)="picker.open()" placeholder="Date of Birth" matInput
+              [matDatepicker]="picker" [formControl]="childForm.controls['dob']">
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="24%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <mat-select placeholder="Level of Care" [formControl]="childForm.controls['careLevel']">
+              <mat-option value="Basic">Basic</mat-option>
+              <mat-option value="Moderate">Moderate</mat-option>
+              <mat-option value="Specialized">Specialized</mat-option>
+              <mat-option value="Intense">Intense</mat-option>
+              <mat-option value="Intense-Plus">Intense-Plus</mat-option>
+              <mat-option value="Other/Unknown">Other/Unknown</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <small *ngIf="childForm.controls['careLevel'].hasError('required') && childForm.controls['careLevel'].touched"
+            class="mat-text-warn">You
+            must include last name.</small> -->
+        </div>
+      </div>
+
+      <div>
+        <app-upload [data]="data" (pubSub)="actionUpload($event)"></app-upload>
+      </div>
+
+      <mat-card-actions class="pa-1">
+        <button [disabled]="childForm.invalid" type="submit" mat-raised-button color="primary">Add another
+          child</button>
+        <button (click)="setupDone()" type="button" mat-raised-button color="primary">Done</button>
+      </mat-card-actions>
+    </section>
+  </form>
+  <section *ngIf="childList?.length > 0">
+    <div fxLayout="row wrap">
+      <div fxFlex="15%" fxLayoutAlign="space-between center" 
+      *ngFor="let child of childList; let i = index;">
+        <div fxLayout="column">
+          <div fxLayout="column">
+            <img class="avatar" src="{{url}}CHILD/{{child.childId}}" onerror="this.style.display='none'" />
+          </div>
+          <div fxLayout="column">{{child?.nameF}} {{child?.nameL}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

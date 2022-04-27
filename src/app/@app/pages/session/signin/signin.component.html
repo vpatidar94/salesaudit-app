@@ -1,0 +1,51 @@
+<!-- <div class="section-session"> -->
+<div class="session-content">
+  <div class="session-wrapper">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="text-xs-center pb-1">
+        <img src="assets/images/logo-dark.svg" alt="" />
+        <p class="text-signin" fxLayout="column">Login to Foster Support</p>
+        <!-- <div fxLayout="column">
+          <p class="text-register" fxLayout="row" fxFlex="100%" fxLayoutAlign="center">Don't have an account?&nbsp;<span
+              fxLayout="row" [routerLink]="'/session/signup'">Register</span></p>
+        </div> -->
+      </div>
+      <div fxLayout="column" fxLayoutGap="30px">
+        <div>
+          <mat-form-field style="width: 100%" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput [formControl]="form.controls['email']">
+          </mat-form-field>
+          <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
+            class="mat-text-warn">Username
+            is required.</small>
+        </div>
+        <div>
+          <mat-form-field style="width: 100%" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="form.controls['password']">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
+            class="mat-text-warn">Password is required.</small>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div>
+            <mat-checkbox color="accent">Remember Me?</mat-checkbox>
+          </div>
+          <div fxLayout="row" fxLayoutAlign=" center">Forgot Passoword?</div>
+        </div>
+        <div fxLayout="column">
+          <button mat-flat-button color="accent" type="submit" [disabled]="!form.valid">Login</button>
+        </div>
+        <div class="text-lg" fxLayout="column" fxLayoutAlign=" center">
+          OR
+        </div>
+        <div fxLayout="column">
+          <button [routerLink]="'/session/signup'" mat-stroked-button color="accent" >Create an Account</button>
+        </div>
+      </div>
+      <br>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="section-session">
+  <div class="session-content">
+    <div class="session-wrapper">
+      <mat-card>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="row-signup-container">
+            <div fxFlex="30%" class="signup-img-container">
+              <img src="../../../../../assets/images/foster/signup.png" />
+            </div>
+            <div class="otp-container" fxLayout="column" fxFlex="65%">
+              <div class="text-xl font-weight-normal">
+                SalesAudit keeps your data secure with Two Factor Authentication (2FA)
+              </div>
+              <br>
+              <div class="text-lg font-weight-light">
+                A text with instructions were sent to (xxx) xxx {{cell}}.
+              </div>
+              <div class="text-lg font-weight-light">
+                Click Send Otp Link to request a one time passcode.
+              </div>
+              <br>
+              <br>
+            </div>
+          </div>
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayout="100%" fxLayoutGap="10px" fxLayoutAlign="center center">
+              <div fxFlex="100%">
+                <input #otp fxFlex="100%" matInput placeholder="OTP" type="text">
+              </div>
+              <div>
+                <button (click)="verifyOtp(otp.value)" mat-raised-button color="primary">Submit</button>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <a (click)="sendOtp()" class="send-otp-link" href="javascript:void(0)">Send OTP</a>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

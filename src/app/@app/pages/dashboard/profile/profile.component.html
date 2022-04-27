@@ -1,0 +1,134 @@
+<div fxLayout="column" fxLayoutAlign="space-between" class="section-profile">
+  <form fxLayout="column" class="pa-1" [formGroup]="signUpForm" (ngSubmit)="saveUser()">
+
+    <section *ngIf="showStep1">
+      <div class="pb-1 text-lg font-weight-bold">
+        User Detail
+      </div>
+      <div class="pb-1" fxLayoutAlign="space-between start">
+        <div fxFlex="49%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="First Name" type="text" [formControl]="signUpForm.controls['nameF']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['nameF'].hasError('required') && signUpForm.controls['nameF'].touched"
+            class="mat-text-warn">You
+            must include first name.</small>
+        </div>
+        <div fxFlex="49%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Last Name" type="text" [formControl]="signUpForm.controls['nameL']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['nameL'].hasError('required') && signUpForm.controls['nameL'].touched"
+            class="mat-text-warn">You
+            must include last name.</small>
+        </div>
+      </div>
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input readonly matInput placeholder="Email address" type="email"
+            [formControl]="signUpForm.controls['email']">
+        </mat-form-field>
+        <small *ngIf="signUpForm.controls['email'].hasError('required') && signUpForm.controls['email'].touched"
+          class="mat-text-warn">You
+          must include an email address.</small>
+        <small *ngIf="signUpForm.controls['email'].errors?.email && signUpForm.controls['email'].touched"
+          class="mat-text-warn">You
+          must include a valid email address.</small>
+      </div>
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Cell" type="text" [formControl]="signUpForm.controls['cell']">
+        </mat-form-field>
+        <small *ngIf="signUpForm.controls['cell'].hasError('required') && signUpForm.controls['cell'].touched"
+          class="mat-text-warn">You must include cell.</small>
+        <small *ngIf="(signUpForm.controls['cell'].hasError('minlength') || 
+                          signUpForm.controls['cell'].hasError('maxlength') ||
+                          signUpForm.controls['cell'].hasError('pattern')) && signUpForm.controls['cell'].touched"
+          class="mat-text-warn">Invalid cell.</small>
+      </div>
+      <mat-card-actions class="pa-1">
+        <button type="button" (click)="changeStep(2)" mat-raised-button color="primary">Next</button>
+      </mat-card-actions>
+    </section>
+
+    <section *ngIf="showStep2">
+      <div class="pb-1 text-lg font-weight-bold">
+        2FA Setting
+      </div>
+      <div class="pb-1">
+        <mat-slide-toggle [formControl]="signUpForm.controls['tfa']">2FA</mat-slide-toggle>
+      </div>
+      <mat-card-actions class="pa-1">
+        <button type="button" (click)="changeStep(3)" mat-raised-button color="primary">Next</button>
+      </mat-card-actions>
+    </section>
+
+    <section *ngIf="showStep3">
+      <div class="pb-1 text-lg font-weight-bold">
+        User Address
+      </div>
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Address" type="text" [formControl]="signUpForm.controls['street']">
+        </mat-form-field>
+        <small *ngIf="signUpForm.controls['street'].hasError('required') && signUpForm.controls['street'].touched"
+          class="mat-text-warn">You
+          must include street.</small>
+      </div>
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Apt or Unit" type="text" [formControl]="signUpForm.controls['landmark']">
+        </mat-form-field>
+      </div>
+
+
+      <div class="pb-1" fxLayoutAlign="space-between start">
+        <div fxFlex="32%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="City" type="text" [formControl]="signUpForm.controls['city']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['city'].hasError('required') && signUpForm.controls['city'].touched"
+            class="mat-text-warn">You
+            must include first city.</small>
+        </div>
+        <div fxFlex="32%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="State" type="text" [formControl]="signUpForm.controls['state']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['state'].hasError('required') && signUpForm.controls['state'].touched"
+            class="mat-text-warn">You
+            must include first state.</small>
+        </div>
+        <div fxFlex="32%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Zip" type="text" [formControl]="signUpForm.controls['zip']">
+          </mat-form-field>
+          <small *ngIf="signUpForm.controls['zip'].hasError('required') && signUpForm.controls['zip'].touched"
+            class="mat-text-warn">You
+            must include zip.</small>
+        </div>
+      </div>
+
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Country" type="text" [formControl]="signUpForm.controls['country']">
+        </mat-form-field>
+        <small *ngIf="signUpForm.controls['country'].hasError('required') && signUpForm.controls['country'].touched"
+          class="mat-text-warn">You
+          must include first country.</small>
+      </div>
+
+      <mat-card-actions class="pa-1">
+        <button [disabled]="signUpForm.invalid" type="submit" mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </section>
+  </form>
+  <div fxLayoutAlign="center end" class="dot-container">
+    <div *ngFor="let step of steps; let i = index;" (click)="changeStep(i+1)" fxLayout="row">
+      <span [ngClass]="activeStep == i+1 ? 'dot dot-active' : 'dot'"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+  </div>
+</div>

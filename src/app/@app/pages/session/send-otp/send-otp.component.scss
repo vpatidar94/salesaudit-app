@@ -1,0 +1,55 @@
+   .session {
+        .session-content {
+            .session-wrapper {
+                max-width: 55vw;
+                .signup-img-container {
+                    img {
+                        max-height: 50vh;
+                    }
+                }
+                .otp-container {
+                    padding: 50px 0;
+                    input[type="text"] {
+                        border: 1px solid #cccccc;
+                        height: 36px;
+                        padding: 0 16px;
+                    }
+                    .send-otp-link {
+                        margin-top: 8px;
+                        color: blue;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 1200px) {
+        .session {
+            .session-content {
+                .session-wrapper {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 767px) {
+        .session {
+            .session-content {
+                .session-wrapper {
+                    .mat-card-content{
+                        .row-signup-container {
+                            display: block !important;
+                            margin: 0 auto;
+                            text-align: center;
+                            .signup-img-container{
+                                max-width: 100% !important;
+                            }
+                            .otp-container{
+                                max-width: 100% !important;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }

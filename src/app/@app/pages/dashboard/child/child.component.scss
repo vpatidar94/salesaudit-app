@@ -1,0 +1,58 @@
+// @import "../../../assets//styles/scss/material.variables";
+
+// :host {
+//   margin-left: -5px;
+//   margin-right: -5px;
+//   margin-top: -5px;
+//   display: block;
+// }
+
+// .section-profile {
+//   min-height: 500px;
+// }
+
+// $mat-toolbar-height-desktop: 64px !default;
+// $mat-toolbar-height-mobile-portrait: 56px !default;
+// $mat-toolbar-height-mobile-landscape: 48px !default;
+
+// .mat-card-top {
+//   margin-top: -($mat-toolbar-height-desktop);
+// }
+
+// .mat-form-field {
+//   width: auto;
+// }
+
+// @media ($mat-xsmall) and (orientation: portrait) {
+//   .mat-card-top {
+//     margin-top: -($mat-toolbar-height-mobile-portrait);
+//   }
+// }
+
+// @media ($mat-small) and (orientation: landscape) {
+//   .mat-card-top {
+//     margin-top: -($mat-toolbar-height-mobile-landscape);
+//   }
+// }
+.dot-container {
+  padding-bottom: 10px;
+  .dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .dot-active {
+    background-color: #3b3da7;
+  }
+}
+
+img.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px 0;
+}

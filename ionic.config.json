@@ -1,0 +1,11 @@
+{
+  "name": "SalesAudit",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "b4518920"
+}

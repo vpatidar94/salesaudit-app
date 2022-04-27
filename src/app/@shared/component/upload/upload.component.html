@@ -1,0 +1,27 @@
+<section>
+    <div fxLayout="column">
+        Upload Image
+    </div>
+    <br>
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2%">
+            <button type="button" (click)="imgIn.click()" color="accent" mat-fab>
+                <mat-icon>upload</mat-icon>
+            </button>
+            <div fxLayout="row">
+                <img [hidden]="!data.image" [src]="data?.image" [width]="cropperSettings.croppedWidth"
+                    [height]="cropperSettings.croppedHeight" />
+            </div>
+        </div>
+        <input hidden #imgIn type="file" (change)="fileChangeListener($event)" />
+    </div>
+    <br>
+    <div fxLayout="column">
+        <div fxLayout="column" fxFlex="100%" fxLayoutGap="1%">
+            <img-cropper (onCrop)="cropped()" [hidden]="!data.image" #cropper [image]="data"
+                [settings]="cropperSettings">
+            </img-cropper>
+        </div>
+    </div>
+
+</section>

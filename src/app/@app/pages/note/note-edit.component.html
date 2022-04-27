@@ -1,0 +1,208 @@
+<div fxLayout="row wrap" fxHide.lt-sm>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-teal">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>local_offer</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>103</h2>
+          <p>Campaigns</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-purple">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>phone</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>230</h2>
+          <p>Customers</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-red">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>notifications</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>323</h2>
+          <p>Queries</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-indigo">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>email</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>870</h2>
+          <p>Opens</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div fxLayout="row wrap">
+  <div fxFlex="100%">
+    <mat-card class="profile-post post-new-notes-custom">
+      <form class="form-edit-note" [formGroup]="memoForm" (ngSubmit)="saveMemo()">
+        <div class="menu-bar-right menu-action-notes" fxLayout="row" fxFlexAlign="end center" fxShow="false"
+          fxShow.lt-sm>
+          <button (click)="OpenUrlNotelist()" class="btn-click-prev-list-note-page" mat-icon-button aria-label="menu">
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          <button class="note-submit-btn" [disabled]="memoForm.invalid" type="submit" mat-raised-button color="primary">
+            <mat-icon>check</mat-icon>
+          </button>
+          <span fxFlex></span>
+          <button mat-icon-button aria-label="menu" (click)="showDiv.children = !showDiv.children">
+            <mat-icon>person_add</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="menu" (click)="showDiv.tagsMobile = !showDiv.tagsMobile">
+            <mat-icon>local_offer</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Subject" [formControl]="memoForm.controls['name']">
+        </mat-form-field>
+
+        <textarea [formControl]="memoForm.controls['note']" placeholder="Note" rows="6"></textarea>
+        <br>
+
+        <mat-form-field class="child-note example-full-width" fxHide.lt-sm>
+          <mat-chip-list #chipList>
+            <mat-chip *ngIf="memoForm.value.child?.nameF" [selectable]="selectable" [removable]="true"
+              (removed)="remove(memoForm.value.child)">
+              <img class="message-icon mr-1 hide-on-open" src="{{url}}CHILD/{{memoForm.value.child?.childId}}" alt="">
+              {{memoForm.value.child?.nameF}} {{memoForm.value.child?.nameL}}
+              <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+            </mat-chip>
+            <input type="text" placeholder="Children Mentioned" aria-label="Child's" matInput
+              (input)="filterChild($event.target.value)" [formControl]="memoForm.controls['child']"
+              [matAutocomplete]="auto" [matChipInputFor]="chipList" />
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of filterChildList" [value]="option">
+                <img class="message-icon mr-1 hide-on-open" src="{{url}}CHILD/{{option.childId}}">
+                {{option.nameF }} {{option.nameL}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-chip-list>
+        </mat-form-field>
+        <div *ngIf="showDiv.children" class="tags-section-note children-select" mode="side">
+          <mat-card-actions class="action-top-card">
+            <div fxLayout="row">
+              <button class="btn-cancel-select" mat-button (click)="showDiv.children = !showDiv.children">
+                Cancel
+              </button>
+              <span fxFlex></span>
+              <button mat-button (click)="showDiv.children = !showDiv.children">
+                Done
+              </button>
+            </div>
+          </mat-card-actions>
+          <mat-form-field class="child-note example-full-width">
+            <mat-chip-list #chipList>
+              <mat-chip *ngIf="memoForm.value.child?.nameF" [selectable]="selectable" [removable]="true"
+                (removed)="remove(memoForm.value.child)">
+                <img class="message-icon mr-1 hide-on-open" src="../../../../assets/images/face2.jpg" alt="">
+                {{memoForm.value.child?.nameF}} {{memoForm.value.child?.nameL}}
+                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+              </mat-chip>
+              <input type="text" placeholder="Children Mentioned" aria-label="Child's" matInput
+                (input)="filterChild($event.target.value)" [formControl]="memoForm.controls['child']"
+                [matAutocomplete]="auto" [matChipInputFor]="chipList" />
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let option of filterChildList" [value]="option">
+                  {{ option.nameF }} {{option.nameL}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+        <!-- <mat-form-field class="child-note example-full-width" fxHide.lt-sm> -->
+        <!-- <input type="text" placeholder="Children Mentioned" aria-label="Child's" matInput
+            (input)="filterChild($event.target.value)" [formControl]="memoForm.controls['child']"
+            [matAutocomplete]="auto"> -->
+
+        <!-- </mat-form-field> -->
+
+        <div class="tags-section-note" fxHide.lt-sm>
+          <div *ngFor="let item of memoCategory">
+            <strong>{{item.value}}</strong><br><br>
+            <mat-chip-list multiple id="chipList" [selectable]="true">
+              <mat-chip (click)="toggleChip(sub.value)" [selected]="chips.has(sub.value)" *ngFor="let sub of item.list">
+                {{sub.value}}
+              </mat-chip>
+            </mat-chip-list>
+            <br><br>
+          </div>
+        </div>
+        <div *ngIf="showDiv.tagsMobile" class="tags-section-note" mode="side">
+          <mat-card-actions class="action-top-card">
+            <div fxLayout="row">
+              <button class="btn-cancel-select" mat-button (click)="showDiv.tagsMobile = !showDiv.tagsMobile">
+                Cancel
+              </button>
+              <span fxFlex></span>
+              <button mat-button (click)="showDiv.tagsMobile = !showDiv.tagsMobile">
+                Done
+              </button>
+            </div>
+          </mat-card-actions>
+          <form class="search-form">
+            <mat-icon>search</mat-icon>
+            <input type="text" placeholder="Find Tags" autofocus="true" (keyup)="applyFilter($event.target.value)" />
+          </form>
+          <button mat-button class="new-tag-btn">
+            <mat-icon>local_offer</mat-icon> New Tag
+          </button>
+          <div *ngFor="let item of memoCategory" class="list-tags-checkbox">
+            <strong>{{item.value}}</strong><br><br>
+            <mat-chip-list multiple id="chipList" [selectable]="true">
+              <mat-checkbox
+                [ngClass]="(FilterCheckbox == '' ||  sub.value.toLowerCase().includes(FilterCheckbox.toLowerCase()))?'':'hidden_filter'"
+                (click)="toggleChip(sub.value)" [selected]="chips.has(sub.value)" *ngFor="let sub of item.list">
+                {{sub.value}}
+              </mat-checkbox>
+            </mat-chip-list>
+            <br><br>
+          </div>
+        </div>
+
+        <hr fxHide.lt-sm>
+        <mat-card-actions fxHide.lt-sm>
+          <div fxLayout="row">
+            <input (change)="selectFile($event)" type="file" hidden #img />
+            <button type="button" (click)="img.click()" mat-icon-button>
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+            <button mat-button>
+              <mat-icon>insert_link</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>location_on</mat-icon>
+            </button>
+            <span fxFlex></span>
+            <button [disabled]="memoForm.invalid" type="submit" mat-raised-button color="primary">Post</button>
+          </div>
+        </mat-card-actions>
+
+      </form>
+    </mat-card>
+  </div>
+
+</div>

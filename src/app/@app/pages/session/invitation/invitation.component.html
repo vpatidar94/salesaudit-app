@@ -1,0 +1,53 @@
+<ng-container *ngIf="loaded">
+  <div class="section-session" *ngIf="iId">
+    <div class="session-content">
+      <div class="session-wrapper">
+        <mat-card>
+          <mat-card-content>
+            <form *ngIf="!linkExpired" [formGroup]="signUpForm">
+              <div class="text-xs-center pb-1">
+                <img src="assets/images/logo-dark.svg" alt="" />
+                <p class="mat-text-muted">Accept or Reject the Inviation from {{invitation.familyName}}.</p>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="space-around">
+                <div class="pb-1">
+                  <mat-form-field style="width: 100%">
+                    <input matInput type="password" placeholder="Password"
+                      [formControl]="signUpForm.controls['password']">
+                  </mat-form-field>
+                  <small
+                    *ngIf="signUpForm.controls['password'].hasError('required') && signUpForm.controls['password'].touched"
+                    class="mat-text-warn">You must include password.</small>
+                </div>
+                <div class="pb-1">
+                  <mat-form-field style="width: 100%">
+                    <input matInput placeholder="Confirm Password"
+                      [formControl]="signUpForm.controls['confirmPassword']" type="password">
+                  </mat-form-field>
+                  <small
+                    *ngIf="signUpForm.controls['confirmPassword'].hasError('required') && signUpForm.controls['confirmPassword'].touched"
+                    class="mat-text-warn">You must include confirm password.</small>
+                  <small *ngIf="signUpForm.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Passwords
+                    do
+                    not
+                    match.</small>
+                </div>
+                <div class="pb-1">
+                  <password-strength-meter [password]="signUpForm.value.password"></password-strength-meter>
+                </div>
+                <div fxLayout="row" fxLayoutGap="1%">
+                  <button (click)="setStatus('REJECTED')" fxFlex="49%" mat-raised-button color="warn" class="btn-block" type="submit">Reject</button>
+                  <button (click)="setStatus('ACCEPT')" fxFlex="49%" mat-raised-button color="primary" class="btn-block" type="submit"
+                    [disabled]="!signUpForm.valid">Accept</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="linkExpired">
+              Link Expired or you already rejected the invitation.
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</ng-container>

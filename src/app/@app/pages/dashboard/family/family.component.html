@@ -1,0 +1,97 @@
+<div fxLayout="column" fxLayoutAlign="space-between" class="section-profile">
+  <form *ngIf="loaded" fxLayout="column" class="pa-1" [formGroup]="familyForm" (ngSubmit)="saveUser()">
+    <section *ngIf="showStep1">
+      <div class="pb-1 text-lg font-weight-bold">
+        Let's start by creating a family name - How about
+      </div>
+      <br>
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Family Name" type="text" [formControl]="familyForm.controls['name']">
+        </mat-form-field>
+        <small *ngIf="familyForm.controls['name'].hasError('required') && familyForm.controls['name'].touched"
+          class="mat-text-warn">You
+          must include family name.</small>
+      </div>
+      <br>
+      <mat-card-actions class="pa-1">
+        <button type="button" (click)="changeStep(2)" mat-raised-button color="primary">Next</button>
+      </mat-card-actions>
+    </section>
+    <section *ngIf="showStep2">
+      <div class="pb-1 text-lg font-weight-bold">
+        Would you like to add co-parent
+      </div>
+      <br>
+      <div class="pb-1 text-lg">
+        <i>A co-parent will be able to have full access to read, write, and manage all your family's notes.</i>
+      </div>
+      <br>
+      <div class="pb-1">
+        <mat-radio-group (change)="radioChange($event)" fxLayout="row" fxLayoutGap="15px">
+          <mat-radio-button [checked]="addSpouse" [value]="true">Yes</mat-radio-button>
+          <mat-radio-button [checked]="!addSpouse" [value]="false">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <br>
+      <mat-card-actions class="pa-1">
+        <div *ngIf="addSpouse == true">
+          <button type="button" (click)="changeStep(3)" mat-raised-button color="primary">Next</button>
+        </div>
+        <div *ngIf="addSpouse == false">
+          <button type="button" (click)="saveFamily()" mat-raised-button color="primary">Save</button>
+        </div>
+      </mat-card-actions>
+    </section>
+    <section *ngIf="showStep3">
+      <div class="pb-1" fxLayoutAlign="space-between start">
+        <div fxFlex="49%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="First Name" type="text" [formControl]="familyForm.controls['nameF']">
+          </mat-form-field>
+          <small *ngIf="familyForm.controls['nameF'].hasError('required') && familyForm.controls['nameF'].touched"
+            class="mat-text-warn">You
+            must include first name.</small>
+        </div>
+        <div fxFlex="49%" fxLayout="column">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Last Name" type="text" [formControl]="familyForm.controls['nameL']">
+          </mat-form-field>
+          <small *ngIf="familyForm.controls['nameL'].hasError('required') && familyForm.controls['nameL'].touched"
+            class="mat-text-warn">You
+            must include last name.</small>
+        </div>
+      </div>
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Email address" type="email" [formControl]="familyForm.controls['email']">
+        </mat-form-field>
+        <small *ngIf="familyForm.controls['email'].hasError('required') && familyForm.controls['email'].touched"
+          class="mat-text-warn">You
+          must include an email address.</small>
+        <small *ngIf="familyForm.controls['email'].errors?.email && familyForm.controls['email'].touched"
+          class="mat-text-warn">You
+          must include a valid email address.</small>
+      </div>
+      <div class="pb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Cell" type="text" [formControl]="familyForm.controls['cell']">
+        </mat-form-field>
+        <small *ngIf="familyForm.controls['cell'].hasError('required') && familyForm.controls['cell'].touched"
+          class="mat-text-warn">You must include cell.</small>
+        <small *ngIf="(familyForm.controls['cell'].hasError('minlength') || 
+                          familyForm.controls['cell'].hasError('maxlength') ||
+                          familyForm.controls['cell'].hasError('pattern')) && familyForm.controls['cell'].touched"
+          class="mat-text-warn">Invalid cell.</small>
+      </div>
+      <mat-card-actions class="pa-1">
+        <button (click)="saveFamilySpose()" type="button" mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </section>
+  </form>
+  <div fxLayoutAlign="center end" class="dot-container">
+    <div *ngFor="let step of steps; let i = index;" (click)="changeStep(i+1)" fxLayout="row">
+      <span [ngClass]="activeStep == i+1 ? 'dot dot-active' : 'dot'"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+  </div>
+</div>
