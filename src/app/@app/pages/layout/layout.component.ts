@@ -19,11 +19,11 @@ export class LayoutComponent implements OnInit {
       url: '/note',
       icon: 'paper-plane'
     },
-    {
-      title: 'Child',
-      url: '/child',
-      icon: 'paper-plane'
-    },
+    // {
+    //   title: 'Child',
+    //   url: '/child',
+    //   icon: 'paper-plane'
+    // },
     // {
     //   title: 'Favorites',
     //   url: '/folder/Favorites',

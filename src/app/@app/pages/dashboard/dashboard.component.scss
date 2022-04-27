@@ -1,5 +1,5 @@
 .section-dashboard {
-    margin-top: 50px;
+    margin-top: 66px;
     overflow-y: auto;
     ion-header {
         position: fixed;
@@ -10,5 +10,8 @@
             min-height: 500px;
             z-index: 999;
         }
+    }
+    .content {
+        padding: 0 10px;
     }
 }
