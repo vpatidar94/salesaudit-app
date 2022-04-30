@@ -1,27 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ChildApi } from '../../service/remote/child.api';
-import { MemoApi } from '../../service/remote/memo.api';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss'],
+  selector: "app-vehicle",
+  templateUrl: "./vehicle.component.html",
+  styleUrls: ["./vehicle.component.scss"]
 })
-export class NoteComponent implements OnInit {
-
+export class VehicleComponent implements OnInit {
   /* ************************************* Static Field ******************************************** */
   /* ************************************* Instance Field ****************************************** */
 
-
   /* ************************************* Constructors ******************************************** */
-  constructor(private memoAPi: MemoApi,
-    private router: Router,
-    private childApi: ChildApi) {
+  constructor() {
   }
 
   /* ************************************* Public Methods ****************************************** */
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this._init();
   }
 

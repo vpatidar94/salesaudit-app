@@ -3,11 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { NoteComponent } from './note.component';
-import { NoteRoutingModule } from './note-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { NoteEditComponent } from './note-edit.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
@@ -24,14 +21,18 @@ import { ChartsModule } from 'ng2-charts';
 import { MatChipsModule } from "@angular/material/chips";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { NoteEditV2Component } from './note-edit-v2.component';
+import { SaleRoutingModule } from './sale-routing.module';
+import { SaleComponent } from './sale.component';
+import { SaleEditComponent } from './sale-edit.component';
+import { CustomerComponent } from './customer/customer.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NoteRoutingModule,
+    SaleRoutingModule,
     MatButtonModule,
     MatIconModule, 
     MatCardModule,
@@ -56,6 +57,6 @@ import { NoteEditV2Component } from './note-edit-v2.component';
     RemoteApiModule,
     MatCheckboxModule
   ],
-  declarations: [NoteComponent, NoteEditComponent, NoteEditV2Component],
+  declarations: [SaleComponent, SaleEditComponent, CustomerComponent, VehicleComponent],
 })
-export class NoteModule { }
+export class SaleModule { }

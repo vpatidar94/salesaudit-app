@@ -15,8 +15,8 @@ export class LayoutComponent implements OnInit {
       icon: 'mail'
     },
     {
-      title: 'Note',
-      url: '/note',
+      title: 'Sale',
+      url: '/sale',
       icon: 'paper-plane'
     },
     // {

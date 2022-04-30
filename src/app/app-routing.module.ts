@@ -22,9 +22,9 @@ const routes: Routes = [
           import("./@app/pages/dashboard/dashboard.module").then(m => m.DashboardModule)
       },
       {
-        path: 'note',
+        path: 'sale',
         loadChildren: () =>
-          import("./@app/pages/note/note.module").then(m => m.NoteModule)
+          import("./@app/pages/sale/sale.module").then(m => m.SaleModule)
       },
     ] 
   },

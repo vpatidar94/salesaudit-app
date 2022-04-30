@@ -1,0 +1,33 @@
+<section class="section-sale">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Add Sale</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <section class="content">
+    <div class="session-content">
+      <div *ngIf="showSectionCustomer">
+        <app-customer></app-customer>
+        <div fxLayout="row" fxLayoutAlign="end">
+          <div fxLayout="column" fxFlex="45%">
+            <button mat-raised-button (click)="saveCustomer()" color="accent">Next</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showSectionVehicle">
+        <app-vehicle></app-vehicle>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxFlex="45%" fxLayout="column">
+            <button (click)="backToCustomer()" mat-raised-button>Back</button>
+          </div>
+          <div fxLayout="column" fxFlex="45%">
+            <button mat-raised-button color="accent">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
