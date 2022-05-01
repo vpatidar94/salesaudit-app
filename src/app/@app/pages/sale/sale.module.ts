@@ -26,6 +26,9 @@ import { SaleComponent } from './sale.component';
 import { SaleEditComponent } from './sale-edit.component';
 import { CustomerComponent } from './customer/customer.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
+import { FactoryOptionComponent } from './factory-option/factory-option.component';
+import { InstallationComponent } from './intallation/intallation.component';
+import { TradeComponent } from './trade/trade.component';
 
 @NgModule({
   imports: [
@@ -57,6 +60,7 @@ import { VehicleComponent } from './vehicle/vehicle.component';
     RemoteApiModule,
     MatCheckboxModule
   ],
-  declarations: [SaleComponent, SaleEditComponent, CustomerComponent, VehicleComponent],
+  declarations: [SaleComponent, SaleEditComponent, CustomerComponent, VehicleComponent,
+    FactoryOptionComponent, InstallationComponent, TradeComponent],
 })
 export class SaleModule { }

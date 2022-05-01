@@ -1,4 +1,4 @@
-<section class="section-sale">
+<section class="section-main">
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -22,6 +22,39 @@
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div fxFlex="45%" fxLayout="column">
             <button (click)="backToCustomer()" mat-raised-button>Back</button>
+          </div>
+          <div fxLayout="column" fxFlex="45%">
+            <button (click)="saveVehicle()" mat-raised-button color="accent">Next</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showSectionFactory">
+        <app-factory-option></app-factory-option>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxFlex="45%" fxLayout="column">
+            <button (click)="backToVehicle()" mat-raised-button>Back</button>
+          </div>
+          <div fxLayout="column" fxFlex="45%">
+            <button (click)="saveFactory()" mat-raised-button color="accent">Next</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showSectionInstallation">
+        <app-intallation></app-intallation>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxFlex="45%" fxLayout="column">
+            <button (click)="backToFactory()" mat-raised-button>Back</button>
+          </div>
+          <div fxLayout="column" fxFlex="45%">
+            <button (click)="saveTrade()" mat-raised-button color="accent">Next</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showSectionTrade">
+        <app-trade></app-trade>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxFlex="45%" fxLayout="column">
+            <button (click)="backToInstallation()" mat-raised-button>Back</button>
           </div>
           <div fxLayout="column" fxFlex="45%">
             <button mat-raised-button color="accent">Next</button>
